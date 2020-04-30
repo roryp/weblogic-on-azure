@@ -126,20 +126,20 @@ Ensure that the deployment action from Eclipse will target the WebLogic Cluster 
 *  Under Settings, open Deployments panel.
    * Scroll down and find deployment whose name starts with `microsoft_javaeeonazure_test.20200123-edburns-02-`, click the deployment.
    * Click Outputs
-   * Copy appGatewayURL. The application will be available at http://`<appGatewayURL>`/weblogic-cafe.
+   * Copy appGatewayURL. The application will be available at `<appGatewayURL>`/weblogic-cafe.
 
 ## Exploring the Application
 
 The application is composed of:
 
-- **A RESTFul service*:** protocol://`<appGatewayURL>`/weblogic-cafe/rest/coffees
+- **A RESTFul service*:** `<appGatewayURL>`/weblogic-cafe/rest/coffees
 
-	- **_GET by Id_**: protocol://`<appGatewayURL>`/weblogic-cafe/rest/coffees/{id} 
-	- **_GET all_**: protocol://`<appGatewayURL>`/weblogic-cafe/rest/coffees
-	- **_POST_** to add a new element at: protocol://`<appGatewayURL>`/weblogic-cafe/rest/coffees
-	- **_DELETE_** to delete an element at: protocol://`<appGatewayURL>`/weblogic-cafe/rest/coffees/{id}
+	- **_GET by Id_**: `<appGatewayURL>`/weblogic-cafe/rest/coffees/{id} 
+	- **_GET all_**: `<appGatewayURL>`/weblogic-cafe/rest/coffees
+	- **_POST_** to add a new element at: `<appGatewayURL>`/weblogic-cafe/rest/coffees
+	- **_DELETE_** to delete an element at: `<appGatewayURL>`/weblogic-cafe/rest/coffees/{id}
 
-- **A JSF Client:** protocol://`<appGatewayURL>`/weblogic-cafe/index.xhtml
+- **A JSF Client:** `<appGatewayURL>`/weblogic-cafe/index.xhtml
 
 Feel free to take a minute to explore the application.
 
