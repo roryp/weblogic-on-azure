@@ -61,7 +61,7 @@ The next step is to get a WebLogic cluster up and running. Follow the steps belo
 
 * Click [Oracle WebLogic Server 12.2.1.3 Cluster](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200123-edburns-02-preview20200123-edburns-02-01). Hit 'Create'.
 * In the basics blade, for "Project details"
-   * In Resource group, select weblogic-cafe-cluster-group-`<your suffix>` . 
+   * Create and specify a new resource group named weblogic-cafe-cluster-group-`<your suffix>` . 
    * Select Region '(US) East US'. 
 * For "Credentails for Virtual Machines and WebLogic"
    * For the "Password for admin account of VMs", enter 'Secret123456'. 
