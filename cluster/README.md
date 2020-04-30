@@ -126,7 +126,7 @@ Ensure that the deployment action from Eclipse will target the WebLogic Cluster 
 *  Under Settings, open Deployments panel.
    * Scroll down and find deployment whose name starts with `microsoft_javaeeonazure_test.20200123-edburns-02-`, click the deployment.
    * Click Outputs
-   * Coply appGatewayURL. The application will be available at http://`<appGatewayURL>`/weblogic-cafe.
+   * Copy appGatewayURL. The application will be available at http://`<appGatewayURL>`/weblogic-cafe.
 
 ## Exploring the Application
 
