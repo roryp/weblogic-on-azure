@@ -32,7 +32,7 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * Find and click on weblogic-cafe-db-`<your suffix>`. 
 * Under Settings, open the connection security panel.
    * Toggle "Allow access to Azure services" to "on"
-   * Toggle "Disable SSL connection enforcement" to "off". 
+   * Make sure to turn off SSL connection enforcement.
    * Hit Add client IP. This allows connection to the database from the IP you are currently using to access Azure.  As a precaution, verify the IP entered is actually your IP.  You can do this by googling "what is my ip".  Hit Save.
 
 ## Setting Up WebLogic
@@ -74,12 +74,12 @@ set WEBLOGIC_CLASSPATH=%JAVA_HOME%\lib\tools.jar;%PROFILE_CLASSPATH%;%ANT_CONTRI
    * Leave the port unchanged.
    * Enter the user name as 'postgres@weblogic-cafe-db-`<your suffix>`'. 
    * Enter the password as 'Secret123!'. Click next. 
-   * On the next screen, accept the defaults and click next. 
-   * On the "Select Targets" screen, select AdminServer, admin, or cluster1 and click Finish.  If you are executing these steps on a WebLogic running on Azure, you must click "Activate Changes" at this point.
+   * On the next screen, accept the defaults and click next.
+   * On the "Select Targets" screen, select AdminServer and click Finish.
    * Test the connection.   
       * In the "Data Sources" pane, click "WebLogicCafeDB".
       * Click Monitoring -> Testing
-      * Select AdminServer, admin, or any of the nodes in the cluster and click "Test Data Source".  You must see "Test of WebLogicCafeDB on server AdminServer was successful." at the top of this pane after clicking the button.  If you do not, put this workshop aside, troubleshoot and resolve the issue.  Once the connection successfully tests, you may continue.
+      * Select AdminServer and click "Test Data Source".  You must see "Test of WebLogicCafeDB on server AdminServer was successful." at the top of this pane after clicking the button.  If you do not, put this workshop aside, troubleshoot and resolve the issue.  Once the connection successfully tests, you may continue.
 
 ## Open weblogic-cafe in the IDE
 * Get the weblogic-cafe application into the IDE. In order to do that, go to File -> Import -> Maven -> Existing Maven Projects.  Click Next

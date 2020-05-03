@@ -17,14 +17,14 @@ The next step is to get WebLogic up and running on a virtual machine. Follow the
 * In the the basics blade, just accept the defaults. 
 * The steps in this section use `<your suffix>`. The suffix could be your first name such as "reza". It should be short and reasonably unique.
 * Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . Hit OK. 
-* Choose the default for the virtual machine size and hit OK. 
+* Next choose the default for the virtual machine size. 
 * In the "Credentials for Server Creation" use these values
-   * For the "admin account of VMs", enter 'Secret123456'. 
+   * For the admin account password, enter 'Secret123456'. 
    * Enter your OTN/Oracle.com username and password (you can create an account for free). 
    * For the "Password for WebLogic Administrator", enter 'Secret123456'. 
-   * Click OK. 
+   * Next accept the defaults for the network settings.
    * On the Summary blade you must see "Validation passed".  If you don't see this, you must troubleshoot and resolve the reason.  After you have done so, you can continue.
-   * On the Summary blade, click OK. On the final screen, click Create.
+   * Click Create.
 * It will take some time for the WebLogic configuration to properly deploy (could be up to an hour). Once the deployment completes, in the portal go to 'All resources'.
 * Find and click on adminServerVM. Copy the DNS name for the virtual machine. You should be able to log onto http://`<admin server DNS name>`:7001/console successfully using the credentials above.  If you are not able to log in, you must troubleshoot and resolve the reason why before continuing.
 
@@ -48,7 +48,7 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * Find and click on weblogic-cafe-db-`<your suffix>`. 
 * Under Settings, open the connection security panel.
    * Toggle "Allow access to Azure services" to "on"
-   * Toggle "Disable SSL connection enforcement" to "off". 
+   * Make sure to turn off SSL connection enforcement.
    * Hit Save.
 
 ## Connect WebLogic to the PostgreSQL Server
@@ -65,12 +65,12 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
    * Enter the user name as 'postgres@weblogic-cafe-db-`<your suffix>`'. 
    * Enter the password as 'Secret123!'. Click next. 
    * On the next screen, accept the defaults and click next. 
-   * On the "Select Targets" screen, select AdminServer, admin, or cluster1 and click Finish.  
+   * On the "Select Targets" screen, select admin and click Finish.  
    * Click "Activate Changes" at this point.
    * Test the connection.   
       * In the "Data Sources" pane, click "WebLogicCafeDB".
       * Click Monitoring -> Testing
-      * Select AdminServer, admin, or any of the nodes in the cluster and click "Test Data Source".  You must see "Test of WebLogicCafeDB on server AdminServer was successful." at the top of this pane after clicking the button.  If you do not, put this workshop aside, troubleshoot and resolve the issue.  Once the connection successfully tests, you may continue.
+      * Select admin and click "Test Data Source".  You must see "Test of WebLogicCafeDB on server admin was successful." at the top of this pane after clicking the button.  If you do not, put this workshop aside, troubleshoot and resolve the issue.  Once the connection successfully tests, you may continue.
 
 ## Setting Up WebLogic in Eclipse
 The next step is to get the application up and running. 
@@ -80,7 +80,7 @@ The next step is to get the application up and running.
    * Go to the 'Servers' panel, secondary click. Select New -> Server
    * Select Oracle -> Oracle WebLogic Server Tools. Click next. Accept the license agreement, click 'Finish'.  Eclipse may ask to be restarted.  If so, comply with the request.
 * You will now connect Eclipse to your remote WebLogic server.
-* Go to the 'Servers' panel, secondary click. Select New -> Server -> Oracle -> Oracle WebLogic Server.
+* Go to the 'Servers' panel, secondary click. Select New -> Server -> Oracle -> Oracle WebLogic Server. Hit Next.
 * Choose remote, for the remote host enter `<admin server DNS name>`
 * Enter the WebLogic admin username/password from above.
 * Click "Test connection".  If "Test connection succeeded!" appears, click Ok and you may continue.  Otherwise, troubleshoot and resolve the reason for the connection failure.
