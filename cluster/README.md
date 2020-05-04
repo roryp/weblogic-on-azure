@@ -34,28 +34,6 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
    * Toggle "Disable SSL connection enforcement" to "DISABLED". 
    * Hit Save.
 
-## Create Key Vault for Application Gateway
-
-We will be using Key Vault in Azure to store SSL certificate data for setting up Azure Application Gateway. Below is how we set it up.
-
-* Go to the [Azure portal](http://portal.azure.com).
-* Select Create a resource, search "Key" and select Key Vault.
-* Click Create.
-* Create and specify a new resource group named weblogiccafekeyvault`<your suffix>`, only letters and numbers are allowed.
-* Specify the Key vault name to be appgatewaykeyvault`<your suffix>`,only letters and numbers are allowed.
-* Click Next
-* For Access policy, enable Azure Resource Manager for template deployment.
-* Click Next
-* Hit 'Review+create' then 'Create'. It will take a moment for the Key Vault to deploy and be ready for use.
-* In the portal, go to 'All resources'. Enter `<your suffix>` into the filter box and press enter.
-* Find and click on appgatewaykeyvault`<your suffix>`.
-* Under Settings, open Secrets panel.
-   * Hit Generate/Import
-   * Select "Certificate" in Upload options
-   * Download [mycert-nopassword.pfx](resources/mycert-nopassword.pfx) and Upload the certificate.
-   * Specify Name to be myCertSecretDataNoPassword
-   * Hit Create
-
 ## Create the WebLogic Cluster on Azure
 The next step is to get a WebLogic cluster up and running. Follow the steps below to do so.
 
@@ -74,20 +52,26 @@ The next step is to get a WebLogic cluster up and running. Follow the steps belo
 * Click Next.
 * In the "Azure Application Gateway" use these values
    * Toggle "Connect to Azure Application Gateway" to `Yes`.
-   * Specify "Resource group name in current subscription containing the KeyVault" to be weblogiccafekeyvault`<your suffix>`.
-   * Specify "Name of the Azure KeyVault containing secrets for the Certificate for SSL Termination" to be appgatewaykeyvault`<your suffix>`
-   * Specify "The name of the secret in the specified KeyVault whose value is the SSL Certificate Data" to be myCertSecretDataNoPassword. 
+   * **preview** Specify "Resource group name in current subscription containing the KeyVault" to be ejb042801k.
+   * **preview** Specify "Name of the Azure KeyVault containing secrets for the Certificate for SSL Termination" to be ejb042801k.
+   * Specify "The name of the secret in the specified KeyVault whose value is the SSL Certificate Data" to be myCertSecretData.
+   * Specify "The name of the secret in the specified KeyVault whose value is the password for the SSL Certificate" to be myCertSecretPassword. 
 * Click Next.
 * In "Database" use these values
    * Toggle "Connect to DataBase" to `Yes`. 
+   * For "Choose database type", from the dropdown menu, select the option for PostgreSQL.
    * Specify JNDI Name to be 'jdbc/WebLogicCafeDB'. 
    * Specify DataSource Connection String to be 'jdbc:postgresql://weblogic-cafe-db-`<your suffix>`.postgres.database.azure.com:5432/postgres'
    * Specify the Database Username to be 'postgres@weblogic-cafe-db-`<your suffix>`'
    * Enter the Database Password as 'Secret123!' 
+* Click Next.
+* In "Azure Active Directory", leave "Connect to Active Directory" with `No` selected.
 * Click Next:Review + create
    * On the Summary blade you must see "Validation passed".  If you don't see this, you must troubleshoot and resolve the reason.  After you have done so, you can continue.
    * On the final screen, click Create.
 * It will take some time for the WebLogic cluster to properly deploy (could be up to an hour). Once the deployment completes, in the portal go to 'All resources'.
+* **preview** You must modify the security rules to open port 7001.  Locate your resource group weblogic-cafe-group-`<your suffix>` and, within the group, select `wls-nsg`.
+* **preview** Within the Network Security Group, select "NRMS-Rule-105".  In the blade that appears, delete `7001` from the list of "Destination port ranges" and hit Save.  Wait for the rule to update.  View the list of resources in your resource group.
 * Find and click on adminVM. Copy the DNS name for the admin server. You should be able to log onto http://`<admin server DNS name>`:7001/console successfully using the credentials above.  If you are not able to log in, you must troubleshoot and resolve the reason why before continuing.
 
 ## Setting Up WebLogic in Eclipse
