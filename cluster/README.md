@@ -59,15 +59,18 @@ We will be using Key Vault in Azure to store SSL certificate data for setting up
 ## Create the WebLogic Cluster on Azure
 The next step is to get a WebLogic cluster up and running. Follow the steps below to do so.
 
-* Click [Oracle WebLogic Server 12.2.1.3 Cluster](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200123-edburns-02-preview20200123-edburns-02-01). Hit 'Create'.
+* Go to the [Azure portal](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200502-edburns-06-preview20200502-edburns-06).
+* Click 'Create'. 
 * In the basics blade, for "Project details"
    * Create and specify a new resource group named weblogic-cafe-cluster-group-`<your suffix>` . 
    * Select Region '(US) East US'. 
 * For "Credentails for Virtual Machines and WebLogic"
    * For the "Password for admin account of VMs", enter 'Secret123456'. 
    * Enter your OTN/Oracle.com username and password (you can create an account for free). 
+      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
    * For the "Password for WebLogic Administrator", enter 'Secret123456'.
-* For "Optional Basic Configuration", hit `Yes` to accept default for optional configuration.
+* For Number of VMs, change the value to 3.
+* For "Optional Basic Configuration", ensure  `Yes` is selected to accept default for optional configuration.
 * Click Next.
 * In the "Azure Application Gateway" use these values
    * Toggle "Connect to Azure Application Gateway" to `Yes`.
