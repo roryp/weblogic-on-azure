@@ -9,31 +9,14 @@ This demo shows how you can deploy a Java EE application to Azure using a simple
 * Download this repository somewhere in your file system (easiest way might be to download as a zip and extract).
 * You will need an Azure subscription. If you don't have one, you can get one for free for one year [here](https://azure.microsoft.com/en-us/free).
 
-## Create the WebLogic Instance on Azure
-The next step is to get WebLogic up and running on a virtual machine. Follow the steps below to do so.
-* Go to the [Azure portal](http://portal.azure.com).
-* Click 'Create a resource'. In the search box, enter 'weblogic' and press enter. 
-* Select 'Oracle WebLogic Server 12.2.1.3 With Admin Server'. Hit 'Create'.
-* In the the basics blade, just accept the defaults. 
-* The steps in this section use `<your suffix>`. The suffix could be your first name such as "reza". It should be short and reasonably unique.
-* Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . Hit OK. 
-* Next choose the default for the virtual machine size. 
-* In the "Credentials for Server Creation" use these values
-   * For the admin account password, enter 'Secret123456'. 
-   * Enter your OTN/Oracle.com username and password (you can create an account for free). 
-   * For the "Password for WebLogic Administrator", enter 'Secret123456'. 
-   * Next accept the defaults for the network settings.
-   * On the Summary blade you must see "Validation passed".  If you don't see this, you must troubleshoot and resolve the reason.  After you have done so, you can continue.
-   * Click Create.
-* It will take some time for the WebLogic configuration to properly deploy (could be up to an hour). Once the deployment completes, in the portal go to 'All resources'.
-* Find and click on adminServerVM. Copy the DNS name for the virtual machine. You should be able to log onto http://`<admin server DNS name>`:7001/console successfully using the credentials above.  If you are not able to log in, you must troubleshoot and resolve the reason why before continuing.
-
 ## Start Managed PostgreSQL on Azure
+
 We will be using the fully managed PostgreSQL offering in Azure for this demo. Below is how we set it up. 
 
 * Go to the [Azure portal](http://portal.azure.com).
 * Select Create a resource -> Databases -> Azure Database for PostgreSQL.  In "How do you plan to use the service?" select "single server".
-* In "Resource group" select weblogic-cafe-group-`<your suffix>`
+* The steps in this section use `<your suffix>`. The suffix could be your first name such as "reza".  It should be short and reasonably unique, and less than 10 charracters in length.
+* Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
 * Specify the Server name to be weblogic-cafe-db-`<your suffix>`.
 * Specify the Admin username to be postgres. 
 * Specify the Password to be Secret123!. 
@@ -47,30 +30,49 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * In the portal, go to 'All resources'. Enter `<your suffix>` into the filter box and press enter.
 * Find and click on weblogic-cafe-db-`<your suffix>`. 
 * Under Settings, open the connection security panel.
-   * Toggle "Allow access to Azure services" to "on"
-   * Make sure to turn off SSL connection enforcement.
+   * Toggle "Allow access to Azure services" to "Yes"
+   * Toggle "Disable SSL connection enforcement" to "DISABLED". 
    * Hit Save.
 
-## Connect WebLogic to the PostgreSQL Server
+## Create the WebLogic Instance on Azure
+The next step is to get a WebLogic instance up and running. Follow the steps below to do so.
 
-* Log in to the WebLogic console at http://`<admin server DNS name>`:7001/console.
-* Click on 'Lock and Edit'. 
-   * Click on Services -> Data Sources. Select New -> Generic Data Source. 
-   * Enter the name as 'WebLogicCafeDB', JNDI name as 'jdbc/WebLogicCafeDB' and select the database type to be PostgreSQL. Click next. 
-   * Accept the defaults and click next.  Do not click Finish, even though you could do so.
-   * On the next screen select 'Logging Last Resource' and click next. 
-   * Enter the database name to be 'postgres'. 
-   * Enter the host name as 'weblogic-cafe-db-`<your suffix>`.postgres.database.azure.com'.
-   * Leave the port unchanged.
-   * Enter the user name as 'postgres@weblogic-cafe-db-`<your suffix>`'. 
-   * Enter the password as 'Secret123!'. Click next. 
-   * On the next screen, accept the defaults and click next. 
-   * On the "Select Targets" screen, select admin and click Finish.  
-   * Click "Activate Changes" at this point.
-   * Test the connection.   
-      * In the "Data Sources" pane, click "WebLogicCafeDB".
-      * Click Monitoring -> Testing
-      * Select admin and click "Test Data Source".  You must see "Test of WebLogicCafeDB on server admin was successful." at the top of this pane after clicking the button.  If you do not, put this workshop aside, troubleshoot and resolve the issue.  Once the connection successfully tests, you may continue.
+* Go to the [Azure portal](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200429-edburns-04-preview20200429-edburns-04).
+* Click 'Create'. 
+* In the basics blade, for "Instance details"
+   * Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
+   * Select Region '(US) East US'. 
+* For "Credentails for Virtual Machines and WebLogic"
+   * For the "Password for admin account of VMs", enter 'Secret123456'. 
+   * Enter your OTN/Oracle.com username and password (you can create an account for free).
+      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
+   * For the "Password for WebLogic Administrator", enter 'Secret123456'.
+* For "Optional Basic Configuration", ensure  `Yes` is selected to accept default for optional configuration.
+* Click Next.
+* In "Database" use these values
+   * Toggle "Connect to DataBase" to `Yes`.
+   * From the dropdown menu, select the option for PostgreSQL.
+   * Specify JNDI Name to be 'jdbc/WebLogicCafeDB'. 
+   * Specify DataSource Connection String to be 'jdbc:postgresql://weblogic-cafe-db-`<your suffix>`.postgres.database.azure.com:5432/postgres?&sslmode=require'
+   * Specify the Database Username to be 'postgres@weblogic-cafe-db-`<your suffix>`'
+   * Enter the Database Password as 'Secret123!' 
+* Click Next.
+* In "Azure Active Directory", leave "Connect to Active Directory" with `No` selected.
+* Click Next:Review + create
+   * On the Summary blade you must see "Validation passed".  If you don't see this, you must troubleshoot and resolve the reason.  After you have done so, you can continue.
+   * On the final screen, click Create.
+* It will take some time for the WebLogic configuration to properly deploy (could be up to 15 minutes). Once the deployment completes, in the portal go to 'All resources'.
+* **preview** You must modify the security rules to open port 7001.  Locate your resource group weblogic-cafe-group-`<your suffix>` and, within the group, select `wls-nsg`.
+* **preview** Within the Network Security Group, select "NRMS-Rule-105".  In the blade that appears, delete `7001` from the list of "Destination port ranges" and hit Save.  Wait for the rule to update.  View the list of resources in your resource group.
+* Find and click on adminVM. Copy the DNS name for the admin server. You should be able to log onto http://`<admin server DNS name>`:7001/console successfully using the credentials above.  If you are not able to log in, you must troubleshoot and resolve the reason why before continuing.
+
+## Verify the database connection is successful
+
+* After logging in to the WebLogic Server Administration Console, in the "Domain Structure" pane, expand "Services".
+* Click on "Data Sources".
+* In the middle of the page, you should see a link with text "jdbc/WebLogicCafeDB".  Click the link.
+* In the upper tab bar, select "Monitoring", then, in the lower tab bar select "Testing".
+* Select the radio button next to the server, then click the "Test Data Source" button.  You must see the text "Test of jdbc/WebLogicCafeDB on server admin was successful." in the Messages section of the page after clicking the button.  If you do not see this, you must troubleshoot and resolve the reason why before continuing.
 
 ## Setting Up WebLogic in Eclipse
 The next step is to get the application up and running. 
