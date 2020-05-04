@@ -37,7 +37,7 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 ## Create the WebLogic Cluster on Azure
 The next step is to get a WebLogic cluster up and running. Follow the steps below to do so.
 
-* Go to the [Azure portal](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200502-edburns-06-preview20200502-edburns-06).
+* **preview** Go to the [preview link in the Azure portal](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200502-edburns-06-preview20200502-edburns-06).
 * Click 'Create'. 
 * In the basics blade, for "Project details"
    * Create and specify a new resource group named weblogic-cafe-cluster-group-`<your suffix>` . 
