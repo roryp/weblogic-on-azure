@@ -8,6 +8,7 @@ We use Eclipse but you can use any Maven and WebLogic capable IDE such as NetBea
 * Install the latest version of Oracle JDK 8 (we used [8u241](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)).
 * Install the Eclipse IDE for Enterprise Java Developers from [here](https://www.eclipse.org/downloads/packages/).
 * Install WebLogic 12.2.1.3 using the Quick Installer by downloading it from [here](https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html).
+   * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
 * Download this repository somewhere in your file system (easiest way might be to download as a zip and extract).
 * You will need an Azure subscription. If you don't have one, you can get one for free for one year [here](https://azure.microsoft.com/en-us/free).
 
@@ -19,20 +20,20 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * Select Create a resource -> Databases -> Azure Database for PostgreSQL.  In "How do you plan to use the service?" select "single server".
 * In "Resource group" select "Create new" and enter weblogic-cafe-group-`<your suffix>`
 * Specify the Server name to be weblogic-cafe-db-`<your suffix>`.
-* Specify the Admin username to be postgres. 
-* Specify the Password to be Secret123!. 
+      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
 * Specify the location to be a location close to you.
 * Leave the Version at its default.
 * In Compute + Storage click "Configure Server" then choose Basic.
    * Set vCore to the minimum.
    * Set Storage to the minimum.
    * Click 'OK'
+      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
 * Hit 'Review+create' then 'Create'. It will take a moment for the database to deploy and be ready for use.
 * In the portal, go to 'All resources'. Enter `<your suffix>` into the filter box and press enter.
 * Find and click on weblogic-cafe-db-`<your suffix>`. 
 * Under Settings, open the connection security panel.
    * Toggle "Allow access to Azure services" to "on"
-   * Make sure to turn off SSL connection enforcement.
+   * Toggle "Enforce SSL connection" to "DISABLED". 
    * Hit Add client IP. This allows connection to the database from the IP you are currently using to access Azure.  As a precaution, verify the IP entered is actually your IP.  You can do this by googling "what is my ip".  Hit Save.
 
 ## Setting Up WebLogic

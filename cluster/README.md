@@ -18,20 +18,20 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * The steps in this section use `<your suffix>`. The suffix could be your first name such as "reza".  It should be short and reasonably unique, and less than 10 charracters in length.
 * Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
 * Specify the Server name to be weblogic-cafe-db-`<your suffix>`.
-* Specify the Admin username to be postgres. 
-* Specify the Password to be Secret123!. 
 * Specify the location to be a location close to you.
 * Leave the Version at its default.
 * In Compute + Storage click "Configure Server" then choose Basic.
    * Set vCore to the minimum.
    * Set Storage to the minimum.
    * Click 'OK'
+* Specify the Admin username to be postgres. 
+* Specify the Password to be Secret123!. 
 * Hit 'Review+create' then 'Create'. It will take a moment for the database to deploy and be ready for use.
 * In the portal, go to 'All resources'. Enter `<your suffix>` into the filter box and press enter.
 * Find and click on weblogic-cafe-db-`<your suffix>`. 
 * Under Settings, open the connection security panel.
    * Toggle "Allow access to Azure services" to "Yes"
-   * Toggle "Disable SSL connection enforcement" to "DISABLED". 
+   * Toggle "Enforce SSL connection" to "DISABLED". 
    * Hit Save.
 
 ## Create the WebLogic Cluster on Azure
@@ -39,6 +39,7 @@ The next step is to get a WebLogic cluster up and running. Follow the steps belo
 
 * **preview** Go to the [preview link in the Azure portal](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200502-edburns-06-preview20200502-edburns-06).
 * Click 'Create'. 
+* **preview** Ensure "Oracle Enterprise Java" is selected in "Subscription".
 * In the basics blade, for "Project details"
    * Create and specify a new resource group named weblogic-cafe-cluster-group-`<your suffix>` . 
    * Select Region '(US) East US'. 

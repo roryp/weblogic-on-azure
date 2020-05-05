@@ -18,20 +18,20 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * The steps in this section use `<your suffix>`. The suffix could be your first name such as "reza".  It should be short and reasonably unique, and less than 10 charracters in length.
 * Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
 * Specify the Server name to be weblogic-cafe-db-`<your suffix>`.
-* Specify the Admin username to be postgres. 
-* Specify the Password to be Secret123!. 
 * Specify the location to be a location close to you.
 * Leave the Version at its default.
 * In Compute + Storage click "Configure Server" then choose Basic.
    * Set vCore to the minimum.
    * Set Storage to the minimum.
    * Click 'OK'
+* Specify the Admin username to be postgres. 
+* Specify the Password to be Secret123!  Do not forget the exclamation point. 
 * Hit 'Review+create' then 'Create'. It will take a moment for the database to deploy and be ready for use.
 * In the portal, go to 'All resources'. Enter `<your suffix>` into the filter box and press enter.
 * Find and click on weblogic-cafe-db-`<your suffix>`. 
 * Under Settings, open the connection security panel.
    * Toggle "Allow access to Azure services" to "Yes"
-   * Toggle "Disable SSL connection enforcement" to "DISABLED". 
+   * Toggle "Enforce SSL connection" to "DISABLED". 
    * Hit Save.
 
 ## Create the WebLogic Instance on Azure
@@ -39,13 +39,14 @@ The next step is to get a WebLogic instance up and running. Follow the steps bel
 
 * **preview** Go to the [preview link in the Azure portal](https://portal.azure.com/#create/microsoft_javaeeonazure_test.20200429-edburns-04-preview20200429-edburns-04).
 * Click 'Create'. 
-* In the basics blade, for "Instance details"
+* **preview** Ensure "Oracle Enterprise Java" is selected in "Subscription".
+* In the basics blade, for "Project details"
    * Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
    * Select Region '(US) East US'. 
 * For "Credentails for Virtual Machines and WebLogic"
    * For the "Password for admin account of VMs", enter 'Secret123456'. 
    * Enter your OTN/Oracle.com username and password (you can create an account for free).
-      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
+      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials.
    * For the "Password for WebLogic Administrator", enter 'Secret123456'.
 * For "Optional Basic Configuration", ensure  `Yes` is selected to accept default for optional configuration.
 * Click Next.
@@ -55,7 +56,7 @@ The next step is to get a WebLogic instance up and running. Follow the steps bel
    * Specify JNDI Name to be 'jdbc/WebLogicCafeDB'. 
    * Specify DataSource Connection String to be 'jdbc:postgresql://weblogic-cafe-db-`<your suffix>`.postgres.database.azure.com:5432/postgres?&sslmode=require'
    * Specify the Database Username to be 'postgres@weblogic-cafe-db-`<your suffix>`'
-   * Enter the Database Password as 'Secret123!' 
+   * Enter the Database Password as 'Secret123!'.  Make sure to get the exclamation point. 
 * Click Next.
 * In "Azure Active Directory", leave "Connect to Active Directory" with `No` selected.
 * Click Next:Review + create
