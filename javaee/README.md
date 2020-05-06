@@ -20,14 +20,12 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * Select Create a resource -> Databases -> Azure Database for PostgreSQL.  In "How do you plan to use the service?" select "single server".
 * In "Resource group" select "Create new" and enter weblogic-cafe-group-`<your suffix>`
 * Specify the Server name to be weblogic-cafe-db-`<your suffix>`.
-      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
 * Specify the location to be a location close to you.
 * Leave the Version at its default.
 * In Compute + Storage click "Configure Server" then choose Basic.
    * Set vCore to the minimum.
    * Set Storage to the minimum.
    * Click 'OK'
-      * **preview** use `60a78f02.microsoft.com@amer.teams.ms` and `hEc!ucesW3Th` for the credentials
 * Hit 'Review+create' then 'Create'. It will take a moment for the database to deploy and be ready for use.
 * In the portal, go to 'All resources'. Enter `<your suffix>` into the filter box and press enter.
 * Find and click on weblogic-cafe-db-`<your suffix>`. 
