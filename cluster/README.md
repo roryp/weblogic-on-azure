@@ -16,7 +16,7 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * Go to the [Azure portal](http://portal.azure.com).
 * Select Create a resource -> Databases -> Azure Database for PostgreSQL.  In "How do you plan to use the service?" select "single server".
 * The steps in this section use `<your suffix>`. The suffix could be your first name such as "reza".  It should be short and reasonably unique, and less than 10 charracters in length.
-* Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
+* Create and specify a new resource group named weblogic-cafe-db-group-`<your suffix>` . 
 * Specify the Server name to be weblogic-cafe-db-`<your suffix>`.
 * Specify the location to be a location close to you.
 * Leave the Version at its default.
@@ -41,7 +41,7 @@ The next step is to get a WebLogic cluster up and running. Follow the steps belo
 * Click 'Create'. 
 * **preview** Ensure "Oracle Enterprise Java" is selected in "Subscription".
 * In the basics blade, for "Project details"
-   * Create and specify a new resource group named weblogic-cafe-cluster-group-`<your suffix>` . 
+   * Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
    * Select Region '(US) East US'. 
 * For "Credentails for Virtual Machines and WebLogic"
    * For the "Password for admin account of VMs", enter 'Secret123456'. 
@@ -110,9 +110,9 @@ Ensure that the deployment action from Eclipse will target the WebLogic Cluster 
    * If a dialog appears saying "Select which server to use", select the cluster one, check the "Always use this server when running this project, and click Finish.
 * Once the application runs, Eclise will try to open it up in a browser. The browser will fail with a 404. This is normal. We delibarately did not deploy the appllication to the admin server.
 * In the azure portal go to 'All resources'. Enter `<your suffix>` into the filter box and press enter.
-* Find and click weblogic-cafe-cluster-group-`<your suffix>`.
+* Find and click weblogic-cafe-group-`<your suffix>`.
 *  Under Settings, open Deployments panel.
-   * Scroll down and find deployment whose name starts with `microsoft_javaeeonazure_test.20200123-edburns-02-`, click the deployment.
+   * Scroll down and find deployment whose name starts with something like `microsoft_javaeeonazure_test.20200123-edburns-02-`, click the deployment.
    * Click Outputs
    * Copy appGatewayURL. The application will be available at `<appGatewayURL>`/weblogic-cafe.
 
@@ -239,4 +239,4 @@ curl --verbose http://wlsclusterappgw34fcab-wls-cluster-appgateway-0428-clusterd
 
 ## Cleaning Up
 
-Once you are done exploring all aspects of the demo, you should delete the weblogic-cafe-group-`<your suffix>` weblogiccafekeyvault`<your suffix>` and weblogic-cafe-cluster-group-`<your suffix>` resource group. You can do this by going to the portal, going to resource groups, finding and clicking on weblogic-cafe-group-`<your suffix>` and hitting delete. To delete weblogiccafekeyvault`<your suffix>` and weblogic-cafe-cluster-group-`<your suffix>` with the same steps. This is especially important if you are not using a free subscription! If you do keep these resources around (for example to begin your own prototype), you should in the least use your own passwords and make the corresponding changes in the demo code.
+Once you are done exploring all aspects of the demo, you should delete the weblogic-cafe-group-`<your suffix>` and weblogic-cafe-db-group-`<your suffix>` resource groups. You can do this by going to the portal, going to resource groups, finding and clicking the groups and hitting delete. This is especially important if you are not using a free subscription! If you do keep these resources around (for example to begin your own prototype), you should in the least use your own passwords and make the corresponding changes in the demo code.

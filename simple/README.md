@@ -16,7 +16,7 @@ We will be using the fully managed PostgreSQL offering in Azure for this demo. B
 * Go to the [Azure portal](http://portal.azure.com).
 * Select Create a resource -> Databases -> Azure Database for PostgreSQL.  In "How do you plan to use the service?" select "single server".
 * The steps in this section use `<your suffix>`. The suffix could be your first name such as "reza".  It should be short and reasonably unique, and less than 10 charracters in length.
-* Create and specify a new resource group named weblogic-cafe-group-`<your suffix>` . 
+* Create and specify a new resource group named weblogic-cafe-db-group-`<your suffix>` . 
 * Specify the Server name to be weblogic-cafe-db-`<your suffix>`.
 * Specify the location to be a location close to you.
 * Leave the Version at its default.
@@ -194,4 +194,4 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 
 ## Cleaning Up
 
-Once you are done exploring all aspects of the demo, you should delete the weblogic-cafe-group-`<your suffix>` resource group. You can do this by going to the portal, going to resource groups, finding and clicking on weblogic-cafe-group-`<your suffix>` and hitting delete. This is especially important if you are not using a free subscription! If you do keep these resources around (for example to begin your own prototype), you should in the least use your own passwords and make the corresponding changes in the demo code.
+Once you are done exploring all aspects of the demo, you should delete the weblogic-cafe-group-`<your suffix>` and weblogic-cafe-db-group-`<your suffix>` resource groups. You can do this by going to the portal, going to resource groups, finding and clicking the groups and hitting delete. This is especially important if you are not using a free subscription! If you do keep these resources around (for example to begin your own prototype), you should in the least use your own passwords and make the corresponding changes in the demo code.
