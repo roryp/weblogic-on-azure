@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<weblogic-web-app
+	xmlns="http://www.bea.com/ns/weblogic/90"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<security-role-assignment>
+		<role-name>webuser</role-name>
+		<principal-name>zehra</principal-name>
+		<principal-name>inaya</principal-name>
+		<principal-name>nicole</principal-name>
+		<principal-name>reza</principal-name>
+	</security-role-assignment>
+</weblogic-web-app>

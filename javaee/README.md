@@ -1,11 +1,11 @@
 # Basic Java EE CRUD Application
 This is a basic Java EE 7 application used throughout the WebLogic on Azure demos. It is a simple CRUD application. It uses Maven and Java EE 7 (JAX-RS, EJB, CDI, JPA, JSF, Bean Validation).
 
-We use Eclipse but you can use any Maven and WebLogic capable IDE such as NetBeans. We use Postgres but you can use any relational database such as MySQL or SQL Server.
+We use Eclipse but you can use any Maven and WebLogic capable IDE such as NetBeans. We use PostgreSQL but you can use any relational database such as MySQL or SQL Server.
 
 ## Setup
 
-* Install the latest version of Oracle JDK 8 (we used [8u241](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)).
+* Install the latest version of Oracle JDK 8 (we used [8u261](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)).
 * Install the Eclipse IDE for Enterprise Java Developers from [here](https://www.eclipse.org/downloads/packages/).
 * Install WebLogic 12.2.1.3 using the Quick Installer by downloading it from [here](https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html).
 * Download this repository somewhere in your file system (easiest way might be to download as a zip and extract).
@@ -47,8 +47,8 @@ The next step is to get the application up and running. Follow the steps below t
    * Enter where the Oracle JDK is installed.  Click next. 
    * For the domain directory, hit Create -> Create Domain. 
    * For the domain name, specify 'domain1'. Hit 'Finish' to add the new server to Eclipse.  If Eclipse asks to create a master password hint, do so.  Consider using `<your suffix>` for the questions and answers.
-   * Copy the Postgres driver to where you have WebLogic installed under server/lib. This file is located in the javaee/server directory where you downloaded the application code.
-   * Depending on your platform, find the commExtEnv.sh or commExtEnv.cmd file in the oracle_common/common/bin directory where you have WebLogic installed. You will need to add the Postgres driver to the WebLogic classpath. The end result will look something like the following.  There are several assignments to `WEBLOGIC_CLASSPATH`.  You will likely need to edit the first one.
+   * Copy the PostgreSQL driver to where you have WebLogic installed under server/lib. This file is located in the javaee/server directory where you downloaded the application code.
+   * Depending on your platform, find the commExtEnv.sh or commExtEnv.cmd file in the oracle_common/common/bin directory where you have WebLogic installed. You will need to add the PostgreSQL driver to the WebLogic classpath. The end result will look something like the following.  There are several assignments to `WEBLOGIC_CLASSPATH`.  You will likely need to edit the first one.
 
 #### commExtEnv.sh
 ```
